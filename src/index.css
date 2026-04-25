@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap');
 
 :root {
   --blue-night: #1A2D59;
@@ -481,7 +481,7 @@ h1, h2, h3, h4 {
   margin: 1rem 0 0.5rem;
 }
 
-/* ??? Raisonnement par r�currence ???????????????????????????????????????? */
+/* ??? Raisonnement par r�currence ???????????????????????????????????????? */
 .rec-box {
   border: 2px solid #7c3aed;
   border-radius: 10px;
@@ -531,3 +531,54 @@ h1, h2, h3, h4 {
 .rec-demo { background: #f0fdf4; }
 .rec-demo .rec-step-badge { color: #16803c; }
 .rec-step-body { line-height: 1.6; }
+
+/* ─── Raisonnement par récurrence ──────────────────────────────────────── */
+.rec-box {
+  border: 2px solid #7c3aed;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.rec-prop {
+  background: #7c3aed;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.rec-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+.rec-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+@media (max-width: 600px) {
+  .rec-steps { grid-template-columns: 1fr; }
+}
+.rec-step {
+  border-right: 1px solid #e2e8f0;
+  padding: 0.7rem 0.8rem;
+}
+.rec-step:last-child { border-right: none; }
+.rec-step-badge {
+  font-weight: 800;
+  font-size: 0.78rem;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.rec-init { background: #eff6ff; }
+.rec-init .rec-step-badge { color: #1d4ed8; }
+.rec-hyp  { background: #fef3c7; }
+.rec-hyp  .rec-step-badge { color: #d97706; }
+.rec-demo { background: #f0fdf4; }
+.rec-demo .rec-step-badge { color: #16803c; }
+.rec-step-body { line-height: 1.6; }
+.tkztab-wrap { margin: 1rem 0; overflow-x: auto; }

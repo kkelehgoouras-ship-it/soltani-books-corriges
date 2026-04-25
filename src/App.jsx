@@ -120,7 +120,7 @@ function T1E2() { return (<>
   <Step index={3} title="Suite décroissante et convergente">
     <p>On calcule <IM t="U_{n+1}-U_n" /> :</p>
     <BM t={T.T1E2_dec} /><BM t={T.T1E2_dec2} /><BM t={T.T1E2_lim} />
-    <RB>Décroissante + minorée par <IM t="\sqrt{2}" /> ⟹ <strong>convergente</strong> ✓</RB>
+    <RB>Suite <strong>minorée</strong> par <IM t="\sqrt{2}" /> et <strong>décroissante</strong> ⟹ <strong>convergente</strong> d'après le théorème des suites monotones bornées ✓</RB>
   </Step>
   <Step index={4} title={<>Limite <IM t="\ell" /></>}>
     <p>À la limite <IM t="f(\ell)=\ell" /> :</p>
@@ -235,7 +235,7 @@ function T2E2() { return (<>
     <IB label="Calculs"><BM t="U_1=e^0\cdot1=1" /><BM t="U_2=e^{-1}\cdot1=\tfrac{1}{e}" /></IB>
     <IB label="Positivité">Si <IM t="U_n>0" />, alors <IM t="U_{n+1}=e^{-n}U_n>0" /> ✓</IB>
     <IB label="Décroissance"><IM t="e^{-n}\leq1\implies U_{n+1}=e^{-n}U_n\leq U_n" /> ✓</IB>
-    <RB>Suite positive, décroissante ⟹ <strong>convergente</strong> ✓</RB>
+    <RB>Suite <strong>minorée</strong> par <IM t="0" /> et <strong>décroissante</strong> ⟹ <strong>convergente</strong> d'après le théorème des suites monotones bornées ✓</RB>
   </Step>
   <Step index={1} title={<>Suite <IM t="V_n=\ln(U_n)" /></>}>
     <p>Relation de récurrence :</p><BM t={T.T2E2_Vrec} />
@@ -244,6 +244,87 @@ function T2E2() { return (<>
   <Step index={2} title={<>Formule de <IM t="U_n" /> et limite</>}>
     <BM t={T.T2E2_Un} />
     <RB><BM t={T.T2E2_lim} /></RB>
+  </Step>
+</>)}
+
+// ── T2-E3 ─────────────────────────────────────────────────────────────────────
+const STATS2_PTS = [[1,8.6],[6,9],[11,9.5],[16,9.4],[21,9.5]]
+function T2E3() { return (<>
+  <Step index={0} title="Moyennes et Covariance">
+    <IB label="Valeurs"><BM t={T.T2E3_stat} /></IB>
+    <IB label="Corrélation"><BM t={T.T2E3_r} /></IB>
+    <RB>{T.T2E3_rint}</RB>
+  </Step>
+  <Step index={1} title="Ajustement Affine (Moindres Carrés)">
+    <div className="section-label">Nuage de points</div>
+    <ScatterPlot
+      points={STATS2_PTS}
+      xLabel="Rang Xi" yLabel="Conso Yi (kg)"
+      xmin={0} xmax={22} ymin={8} ymax={10}
+      xticks={[1,6,11,16,21]}
+      yticks={[8,8.5,9,9.5,10]}
+      lines={[{ a: 0.046, b: 8.694, color: '#e0296e' }]}
+      title="Nuage de points + Droite de régression"
+    />
+    <IB label="Calcul de a"><BM t={T.T2E3_a} /></IB>
+    <IB label="Calcul de b"><BM t={T.T2E3_b} /></IB>
+    <RB><BM t={T.T2E3_D} /></RB>
+  </Step>
+  <Step index={2} title="Estimations et Calcul de prix">
+    <IB label="Estimation 2024 (rang 30)"><BM t={T.T2E3_est2024} /></IB>
+    <IB label="Total conso 2024 (+20%)"><BM t={T.T2E3_tot2024} /></IB>
+    <IB label="Conso autres viandes"><BM t={T.T2E3_autres} /></IB>
+    <div className="section-label">Calcul du prix du mouton</div>
+    <IB label="Équation de dépense"><BM t={T.T2E3_prix} /></IB>
+    <RB><BM t={T.T2E3_pm} /></RB>
+  </Step>
+</>)}
+
+// ── T2-E4 ─────────────────────────────────────────────────────────────────────
+function T2E4() { 
+  const f24 = x => Math.exp(x) - Math.exp(-x) + x
+  const d24 = x => x
+  return (<>
+  <Step index={0} title="Parité et Limites">
+    <IB label="Parité"><BM t={T.T2E4_imp} /></IB>
+    <IB label="Limite en +∞"><BM t={T.T2E4_lim} /></IB>
+    <IB label="Direction asymptotique"><BM t={T.T2E4_limx} /></IB>
+    <RB>{T.T2E4_int}</RB>
+  </Step>
+  <Step index={1} title="Dérivée et Variations">
+    <IB label="Dérivée"><BM t={T.T2E4_fp} /></IB>
+    <div className="section-label">Tableau de variation</div>
+    <VariationTable
+      xVals={[{ tex: '-\\infty' }, { tex: '+\\infty' }]}
+      signs={['+']}
+      arrows={['up']}
+      fVals={[{ tex: '-\\infty', pos: 'bot' }, { tex: '+\\infty', pos: 'top' }]}
+    />
+  </Step>
+  <Step index={2} title="Inflexion et Tangente">
+    <IB label="Dérivée seconde"><BM t={T.T2E4_fpp} /></IB>
+    <IB label="Point d'inflexion"><BM t={T.T2E4_inf} /></IB>
+    <RB><BM t={T.T2E4_T} /></RB>
+  </Step>
+  <Step index={3} title="Courbes et Position Relative">
+    <div className="section-label">Tracé de (C) et Δ</div>
+    <FunctionCurve
+      fn={f24}
+      xmin={-2} xmax={2} ymin={-4} ymax={4}
+      xticks={[-2,-1,0,1,2]} yticks={[-4,-2,0,2,4]}
+      title="(C): f(x) et Δ: y = x (en pointillé)"
+      extra={[
+        { type:'fn', fn: d24, color:'#e0296e', dash: true },
+        { type:'fn', fn: x => 3*x, color:'#16803c', dash: true } // Tangente
+      ]}
+    />
+    <IB label="Position (f(x) - x)"><BM t={T.T2E4_pos} /></IB>
+    <RB><BM t={T.T2E4_pos2} /> ⟹ (C) est au-dessus de Δ sur ]0;+∞[ et en-dessous sur ]-∞;0[</RB>
+  </Step>
+  <Step index={4} title="Calcul d'Aire">
+    <IB label="Calcul de I"><BM t={T.T2E4_I} /><BM t={T.T2E4_I2} /></IB>
+    <IB label="Aire totale S"><BM t={T.T2E4_S} /></IB>
+    <RB><BM t={T.T2E4_S2} /></RB>
   </Step>
 </>)}
 
@@ -345,6 +426,8 @@ const DB = {
   'T1-E4': { title:'Étude de Fonction — Ln',   badge:'Sujet 1 · Ex.4 · Analyse',       C:<T1E4/> },
   'T2-E1': { title:'Matrices et Applications', badge:'Sujet 2 · Ex.1 · Algèbre',       C:<T2E1/> },
   'T2-E2': { title:'Suites Numériques',        badge:'Sujet 2 · Ex.2 · Analyse',       C:<T2E2/> },
+  'T2-E3': { title:'Statistiques',             badge:'Sujet 2 · Ex.3 · Stats',         C:<T2E3/> },
+  'T2-E4': { title:'Étude de Fonction — Exp',  badge:'Sujet 2 · Ex.4 · Analyse',       C:<T2E4/> },
   'T3-E1': { title:'Matrices et Suites',       badge:'Sujet 3 · Ex.1 · Algèbre',       C:<T3E1/> },
   'T3-E3': { title:'Probabilités',             badge:'Sujet 3 · Ex.3 · Proba',         C:<T3E3/> },
   'T4-E1': { title:'Matrices',                 badge:'Sujet 4 · Ex.1 · Algèbre',       C:<T4E1/> },
