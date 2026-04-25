@@ -37,5 +37,38 @@
   "Xc1":     "x=-\\tfrac{1}{7}\\bigl(2(1)+1(2)+(-3)(-1)\\bigr)=-\\tfrac{1}{7}(2+2+3)=-\\tfrac{7}{7}=-1",
   "XR":      "X=-\\tfrac{1}{7}\\begin{pmatrix}7\\\\-7\\\\-14\\end{pmatrix}=\\begin{pmatrix}-1\\\\1\\\\2\\end{pmatrix}",
   "lnSys":   "\\begin{cases}\\ln a+2\\ln b-\\ln c=-1\\\\\\ln a+\\ln b+\\ln c=2\\\\2\\ln a-\\ln b+\\ln c=-1\\end{cases}",
-  "lnF":     "a=e^{-1}=\\tfrac{1}{e},\\quad b=e^1=e,\\quad c=e^2"
+  "lnF":     "a=e^{-1}=\\tfrac{1}{e},\\quad b=e^1=e,\\quad c=e^2",
+
+  "T1E2_U0":  "U_0=2,\\quad U_1=\\frac{1}{2}+\\frac{2}{2}=\\frac{5}{2}=2{,}5",
+  "T1E2_U2":  "U_2=\\frac{1}{U_1}+\\frac{U_1}{2}=\\frac{2}{5}+\\frac{5}{4}=\\frac{8}{20}+\\frac{25}{20}=\\frac{33}{20}=1{,}65",
+  "T1E2_U3":  "U_3=\\frac{1}{U_2}+\\frac{U_2}{2}=\\frac{20}{33}+\\frac{33}{40}=\\frac{800}{1320}+\\frac{1089}{1320}=\\frac{1889}{1320}\\approx1{,}431",
+  "T1E2_rec": "U_{n+1}-\\sqrt{2}=\\frac{1}{U_n}+\\frac{U_n}{2}-\\sqrt{2}=\\frac{2+U_n^2-2\\sqrt{2}\\,U_n}{2U_n}=\\frac{(U_n-\\sqrt{2})^2}{2U_n}",
+  "T1E2_pos": "\\text{Si }U_n\\geq\\sqrt{2}\\text{, alors }(U_n-\\sqrt{2})^2\\geq0\\text{ et }2U_n>0\\text{, donc }U_{n+1}-\\sqrt{2}\\geq0",
+  "T1E2_dec": "U_{n+1}-U_n=\\frac{1}{U_n}+\\frac{U_n}{2}-U_n=\\frac{1}{U_n}-\\frac{U_n}{2}=\\frac{2-U_n^2}{2U_n}=\\frac{(\\sqrt{2}-U_n)(\\sqrt{2}+U_n)}{2U_n}",
+  "T1E2_lim": "\\text{Si }U_n\\geq\\sqrt{2}\\text{ : }\\sqrt{2}+U_n>0,\\;\\sqrt{2}-U_n\\leq0\\;\\Rightarrow\\;U_{n+1}-U_n\\leq0",
+  "T1E2_fL":  "f(L)=L\\iff\\frac{1}{L}+\\frac{L}{2}=L\\iff\\frac{1}{L}=\\frac{L}{2}\\iff L^2=2\\iff L=\\sqrt{2}\\quad(L>0)",
+
+  "T1E3_stat": "\\bar{x}=4{,}5,\\quad \\bar{y}=766{,}1",
+  "T1E3_mayer_D": "y=150{,}76x+187{,}68",
+  "T1E3_est2025": "150{,}76\\times10+187{,}68=1695{,}28\\text{ millions de dinars}",
+  "T1E3_lnZ":  "Z=\\ln(Y)\\implies \\bar{Z}=\\ln(\\bar{Y})",
+  "T1E3_r":    "r\\approx0{,}97\\text{ (corrélation très forte)}",
+  "T1E3_Zline": "Z=0{,}263x+5{,}68",
+  "T1E3_Y2025": "Y=e^{0{,}263\\times10+5{,}68}=e^{8{,}31}\\approx4042\\text{ millions de dinars}",
+
+  "T2E1_matA2": "A=\\begin{pmatrix}1&1&1\\\\2&2&1\\\\1&-1&0\\end{pmatrix}",
+  "T2E1_matB2": "B=\\begin{pmatrix}-1&1&1\\\\-1&1&-1\\\\4&-2&0\\end{pmatrix}",
+  "T2E1_detA":  "\\det(A)=1(2\\cdot0-1\\cdot(-1))-1(2\\cdot0-1\\cdot1)+1(2\\cdot(-1)-2\\cdot1)",
+  "T2E1_detA2": "\\det(A)=1(1)-1(-1)+1(-4)=1+1-4=-2+2\\alpha\\text{ (avec }\\alpha=2)=-2+4=2",
+  "T2E1_AB2I":  "A\\times B=\\begin{pmatrix}2&0&0\\\\0&2&0\\\\0&0&2\\end{pmatrix}=2I_3",
+  "T2E1_Ainv2": "A^{-1}=\\frac{1}{2}B=\\frac{1}{2}\\begin{pmatrix}-1&1&1\\\\-1&1&-1\\\\4&-2&0\\end{pmatrix}",
+  "T2E1_sys":   "\\begin{cases}x+y+z=70\\\\2x+2y+z=125\\\\x-y=5\\end{cases}",
+  "T2E1_Xsol":  "X=A^{-1}V=\\frac{1}{2}\\begin{pmatrix}-1&1&1\\\\-1&1&-1\\\\4&-2&0\\end{pmatrix}\\begin{pmatrix}70\\\\125\\\\5\\end{pmatrix}",
+  "T2E1_sol":   "x=30\\text{ (couples)},\\quad y=25\\text{ (femmes)},\\quad z=15\\text{ (enfants)}",
+
+  "T2E2_V":    "V_n=\\ln(U_n)",
+  "T2E2_Vrec": "V_{n+1}=\\ln(U_{n+1})=\\ln(e^{-n}U_n)=-n+\\ln(U_n)=V_n-n",
+  "T2E2_Vn":   "V_n=-\\frac{n(n-1)}{2}",
+  "T2E2_Un":   "U_n=e^{V_n}=e^{-\\frac{n(n-1)}{2}}=\\frac{1}{e^{\\frac{n(n-1)}{2}}}",
+  "T2E2_lim":  "\\lim_{n\\to+\\infty}\\frac{n(n-1)}{2}=+\\infty\\implies\\lim_{n\\to+\\infty}U_n=0"
 }
