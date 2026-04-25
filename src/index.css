@@ -54,9 +54,6 @@ h1, h2, h3, h4 {
   line-height: 1.1;
   text-align: left;
   display: inline-block;
-  padding: 0.5rem 1.5rem;
-  background: #1e293b;
-  border-radius: 8px;
 }
 .logo-main {
   color: #ffffff;
@@ -67,11 +64,11 @@ h1, h2, h3, h4 {
   color: #fb2c67;
   font-style: italic;
   font-family: 'Inter', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   display: block;
   text-align: right;
-  margin-top: -0.2rem;
-  margin-right: -0.5rem;
+  margin-top: -0.3rem;
+  margin-right: 0;
 }
 
 /* Main Content */
