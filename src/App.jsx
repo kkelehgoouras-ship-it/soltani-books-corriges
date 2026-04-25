@@ -32,6 +32,29 @@ const IB = ({ label, children }) => <div className="info-box"><span className="i
 const RB = ({ children }) => <div className="result-box">{children}</div>
 const CR = ({ label, fkey }) => <div className="calc-row">{label} : <BM t={T[fkey]} /></div>
 
+// ── Raisonnement par récurrence ───────────────────────────────────────────────
+function Rec({ prop, verif, suppo, demo }) {
+  return (
+    <div className="rec-box">
+      <div className="rec-prop"><span className="rec-label">Propriété à démontrer</span>{prop}</div>
+      <div className="rec-steps">
+        <div className="rec-step rec-init">
+          <div className="rec-step-badge">① Vérification</div>
+          <div className="rec-step-body">{verif}</div>
+        </div>
+        <div className="rec-step rec-hyp">
+          <div className="rec-step-badge">② Supposition (H.R.)</div>
+          <div className="rec-step-body">{suppo}</div>
+        </div>
+        <div className="rec-step rec-demo">
+          <div className="rec-step-badge">③ Démonstration</div>
+          <div className="rec-step-body">{demo}</div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ── T1-E1 ─────────────────────────────────────────────────────────────────────
 function T1E1() { return (<>
   <Step index={0} title={<>Déterminant de <IM t={T.A} /></>}>
@@ -85,10 +108,14 @@ function T1E2() { return (<>
   <Step index={1} title={<>Identité <IM t="U_{n+1}-\sqrt{2}=\frac{(U_n-\sqrt{2})^2}{2U_n}" /></>}>
     <BM t={T.T1E2_rec} /><RB>Identité vérifiée ✓</RB>
   </Step>
-  <Step index={2} title={<>Montrer <IM t="U_n\geq\sqrt{2}" /></>}>
-    <IB label="Init."><IM t="U_0=2>\sqrt{2}" /> ✓</IB>
-    <IB label="Hérédité"><BM t={T.T1E2_pos} /></IB>
-    <RB>Par récurrence : <IM t="U_n\geq\sqrt{2}" /> ✓</RB>
+  <Step index={2} title={<>Montrer que <IM t="U_n\geq\sqrt{2}" /> pour tout <IM t="n\in\mathbb{N}" /></>}>
+    <Rec
+      prop={<><IM t="P(n)" /> : <IM t="U_n\geq\sqrt{2}" /></>}
+      verif={<><p><strong>n = 0 :</strong></p><BM t="U_0=2\geq\sqrt{2}\approx1{,}41" /><p>✓ vrai au rang 0</p></>}
+      suppo={<><p>Supposons <IM t="U_n\geq\sqrt{2}" /> pour un <IM t="n" /> fixé.</p><p>On veut montrer <IM t="U_{n+1}\geq\sqrt{2}" />.</p></>}
+      demo={<><p>D'après l'identité démontrée à l'étape précédente :</p><BM t={T.T1E2_pos} /><p>Donc <IM t="U_{n+1}\geq\sqrt{2}" /> ✓</p></>}
+    />
+    <RB>Par récurrence : <IM t="U_n\geq\sqrt{2}" /> pour tout <IM t="n\in\mathbb{N}" /> ✓</RB>
   </Step>
   <Step index={3} title="Suite décroissante et convergente">
     <p>On calcule <IM t="U_{n+1}-U_n" /> :</p>
