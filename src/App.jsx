@@ -41,15 +41,19 @@ function Exo_T1_E1() {
         <p>On a <IM t={T.matA} /></p>
         <div className="info-box"><span className="info-label">Méthode :</span> Développement par rapport à la 1ère ligne</div>
         <BM t={T.detL} />
-        <BM t={T.detC} />
+        <BM t={T.detC1} />
+        <BM t={T.detC2} />
         <div className="result-box"><IM t={T.detNeq} /> &nbsp;⟹&nbsp; <IM t={T.A} /> est <strong>inversible</strong> ✓</div>
       </Step>
 
       <Step index={1} title={<>Calcul de <IM t={T.A2} /></>}>
-        <BM t={T.A2P} />
+        <p>On calcule <IM t={T.A2P} /> :</p>
+        <BM t={T.A2Pm} />
         <div className="info-box">
           <span className="info-label">Détail 1ère ligne :</span>
-          <BM t={T.A2R1} />
+          <div className="calc-row">colonne 1 : <BM t={T.A2R1a} /></div>
+          <div className="calc-row">colonne 2 : <BM t={T.A2R1b} /></div>
+          <div className="calc-row">colonne 3 : <BM t={T.A2R1c} /></div>
         </div>
         <div className="result-box"><BM t={T.A2R} /></div>
       </Step>
@@ -64,7 +68,9 @@ function Exo_T1_E1() {
         <BM t={T.ABP} />
         <div className="info-box">
           <span className="info-label">Détail 1ère ligne :</span>
-          <BM t={T.ABR1} />
+          <div className="calc-row">entrée (1,1) : <BM t={T.ABR1a} /></div>
+          <div className="calc-row">entrée (1,2) : <BM t={T.ABR1b} /></div>
+          <div className="calc-row">entrée (1,3) : <BM t={T.ABR1c} /></div>
         </div>
         <div className="result-box"><BM t={T.ABR} /></div>
       </Step>
