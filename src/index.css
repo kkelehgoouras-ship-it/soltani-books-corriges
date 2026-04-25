@@ -48,18 +48,30 @@ h1, h2, h3, h4 {
 }
 
 .logo {
-  font-size: 1.8rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  text-align: left;
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: #1e293b;
+  border-radius: 8px;
 }
-
+.logo-main {
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.5px;
+}
 .logo-accent {
-  color: var(--pink-vivid);
-  font-size: 1rem;
+  color: #fb2c67;
   font-style: italic;
-  transform: translateY(-5px);
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem;
+  display: block;
+  text-align: right;
+  margin-top: -0.2rem;
+  margin-right: -0.5rem;
 }
 
 /* Main Content */
@@ -601,3 +613,55 @@ h1, h2, h3, h4 {
 .rec-demo .rec-step-badge { color: #16803c; }
 .rec-step-body { line-height: 1.6; }
 .tkztab-wrap { margin: 1rem 0; overflow-x: auto; }
+/* ─── Styles d'impression ──────────────────────────────────────────────── */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  .app-container {
+    background: white;
+    color: black;
+  }
+  .header, .search-section, .download-pdf-btn, .code-chip {
+    display: none !important;
+  }
+  .correction-card {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+  }
+  .card-title {
+    color: black;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 0.5rem;
+  }
+  .step-box {
+    page-break-inside: avoid;
+    border: 1px solid #ccc;
+    background: transparent;
+  }
+  .step-header {
+    background: #f1f5f9;
+    color: black;
+  }
+  .info-box {
+    background: #f8fafc;
+    border-left-color: #94a3b8;
+  }
+  .result-box {
+    background: #f0fdf4;
+    border-left-color: #22c55e;
+  }
+  .rec-box {
+    border-color: #94a3b8;
+  }
+  .rec-prop {
+    background: #f1f5f9;
+    color: black;
+  }
+  svg text {
+    fill: black !important;
+  }
+}

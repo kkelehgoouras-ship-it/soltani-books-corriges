@@ -459,6 +459,57 @@ function T4E2() { return (<>
   </Step>
 </>)}
 
+// ── T4-E3 ─────────────────────────────────────────────────────────────────────
+const STATS4_PTS = [[0,450],[1,480],[2,520],[3,570],[4,630],[5,700],[6,780],[7,880]]
+function T4E3() { return (<>
+  <Step index={0} title="Ajustement affine">
+    <div className="section-label">Nuage de points</div>
+    <ScatterPlot
+      points={STATS4_PTS}
+      xLabel="Rang Xi" yLabel="Clients Yi"
+      xmin={-0.5} xmax={7.5} ymin={400} ymax={900}
+      xticks={[0,1,2,3,4,5,6,7]}
+      yticks={[400,500,600,700,800,900]}
+      title="Nuage de points (Années 2017-2024)"
+    />
+    <IB label="Corrélation"><BM t={T.T4E3_r} /></IB>
+    <RB>{T.T4E3_rjust}</RB>
+  </Step>
+  <Step index={1} title="Ajustement exponentiel (z = ln y)">
+    <IB label="Droite de z en x"><BM t={T.T4E3_Z} /></IB>
+    <IB label="Expression de y"><BM t={T.T4E3_Y} /></IB>
+    <RB><BM t={T.T4E3_est2026} /></RB>
+  </Step>
+</>)}
+
+// ── T4-E4 ─────────────────────────────────────────────────────────────────────
+function T4E4() { return (<>
+  <Step index={0} title="Identification de la primitive">
+    <IB label="Analyse"><BM t={T.T4E4_prim} /></IB>
+  </Step>
+  <Step index={1} title="Lecture Graphique">
+    <IB label="Valeurs et Dérivées"><BM t={T.T4E4_lect1} /></IB>
+    <IB label="Limites"><BM t={T.T4E4_lect2} /></IB>
+    <IB label="Valeur exacte"><BM t={T.T4E4_val} /></IB>
+    <div className="section-label">Tableau de variation de f</div>
+    <VariationTable
+      xVals={[{ tex: '0' }, { tex: 'e' }, { tex: '+\\infty' }]}
+      signs={['+', '-']}
+      arrows={['up', 'down']}
+      fVals={[{ tex: '-\\infty', pos: 'bot' }, { tex: '\\frac{4}{e}+1', pos: 'top' }, { tex: '1', pos: 'bot' }]}
+    />
+  </Step>
+  <Step index={2} title="Équation f(x) = 0">
+    <IB label="Théorème des Valeurs Intermédiaires"><BM t={T.T4E4_TVI} /></IB>
+    <RB>f(x) &lt; 0 sur ]0;α[ et f(x) &gt; 0 sur ]α;+∞[ ✓</RB>
+  </Step>
+  <Step index={3} title="Primitive et Aire">
+    <IB label="Vérification de F"><BM t={T.T4E4_F} /></IB>
+    <IB label="Calcul de l'intégrale"><BM t={T.T4E4_I} /></IB>
+    <RB><BM t={T.T4E4_I2} /></RB>
+  </Step>
+</>)}
+
 // ── T5-E1 ─────────────────────────────────────────────────────────────────────
 function T5E1() { return (<>
   <Step index={0} title={<>Déterminant de <IM t="A" /></>}>
@@ -478,6 +529,63 @@ function T5E1() { return (<>
   </Step>
 </>)}
 
+// ── T5-E2 ─────────────────────────────────────────────────────────────────────
+const STATS5_PTS = [[1,10],[2,11],[3,14],[4,18],[5,22]]
+function T5E2() { return (<>
+  <Step index={0} title="Ajustement affine">
+    <div className="section-label">Nuage de points</div>
+    <ScatterPlot
+      points={STATS5_PTS}
+      xLabel="Rang Xi" yLabel="Touristes Yi"
+      xmin={0} xmax={6} ymin={8} ymax={24}
+      xticks={[1,2,3,4,5]}
+      yticks={[10,12,14,16,18,20,22,24]}
+      lines={[{ a: 3.1, b: 5.7, color: '#e0296e' }]}
+      title="Nuage de points (Années 2018-2022) et droite d'ajustement"
+    />
+    <IB label="Corrélation"><BM t={T.T5E2_r} /></IB>
+    <RB>{T.T5E2_rjust}</RB>
+  </Step>
+  <Step index={1} title="Droite de régression et Estimation">
+    <IB label="Équation de la droite"><BM t={T.T5E2_D} /></IB>
+    <RB><BM t={T.T5E2_est2025} /></RB>
+  </Step>
+</>)}
+
+// ── T5-E3 ─────────────────────────────────────────────────────────────────────
+function T5E3() { return (<>
+  <Step index={0} title="Analyse du graphe">
+    <IB label="Connexité"><BM t={T.T5E3_conx} /></IB>
+    <RB><BM t={T.T5E3_deg8} /></RB>
+  </Step>
+  <Step index={1} title="Chemins dans le graphe">
+    <RB>Chemin de (1) à (6) de longueur 3 : <BM t={T.T5E3_ch3} /></RB>
+  </Step>
+</>)}
+
+// ── T5-E4 ─────────────────────────────────────────────────────────────────────
+function T5E4() { return (<>
+  <Step index={0} title={<>Matrices <IM t="A" /> et <IM t="B" /></>}>
+    <IB label="Déterminant de A"><BM t={T.T5E4_detA} /></IB>
+    <IB label="Produit A×B"><BM t={T.T5E4_AB} /></IB>
+    <RB><BM t={T.T5E4_Ainv} /></RB>
+  </Step>
+  <Step index={1} title="Lecture Graphique">
+    <IB label="Valeurs aux points A et B"><BM t={T.T5E4_lect} /></IB>
+    <RB><BM t={T.T5E4_lims} /></RB>
+  </Step>
+  <Step index={2} title="Tangente T">
+    <RB><BM t={T.T5E4_T} /></RB>
+  </Step>
+  <Step index={3} title="Dérivées et Système">
+    <IB label="Dérivée f'(x)"><BM t={T.T5E4_fp} /></IB>
+    <IB label="Dérivée seconde f''(x)"><BM t={T.T5E4_fpp} /></IB>
+    <IB label="Écriture matricielle de (S)"><BM t={T.T5E4_Smat} /></IB>
+    <IB label="Solution"><BM t={T.T5E4_Sol} /></IB>
+    <RB>Expression finale : <BM t={T.T5E4_f} /> ✓</RB>
+  </Step>
+</>)}
+
 // ── BD ────────────────────────────────────────────────────────────────────────
 const DB = {
   'T1-E1': { title:'Matrices et Systèmes',    badge:'Sujet 1 · Ex.1 · Algèbre',       C:<T1E1/> },
@@ -494,7 +602,12 @@ const DB = {
   'T3-E4': { title:'Étude de Fonction — Ln',   badge:'Sujet 3 · Ex.4 · Analyse',       C:<T3E4/> },
   'T4-E1': { title:'Matrices',                 badge:'Sujet 4 · Ex.1 · Algèbre',       C:<T4E1/> },
   'T4-E2': { title:'Suites Numériques',        badge:'Sujet 4 · Ex.2 · Analyse',       C:<T4E2/> },
+  'T4-E3': { title:'Statistiques',             badge:'Sujet 4 · Ex.3 · Stats',         C:<T4E3/> },
+  'T4-E4': { title:'Étude de Fonction — Exp',  badge:'Sujet 4 · Ex.4 · Analyse',       C:<T4E4/> },
   'T5-E1': { title:'Matrices et Fonctions',    badge:'Sujet 5 · Ex.1 · Algèbre',       C:<T5E1/> },
+  'T5-E2': { title:'Statistiques',             badge:'Sujet 5 · Ex.2 · Stats',         C:<T5E2/> },
+  'T5-E3': { title:'Théorie des Graphes',      badge:'Sujet 5 · Ex.3 · Graphes',       C:<T5E3/> },
+  'T5-E4': { title:'Matrices et Fonction Ln',  badge:'Sujet 5 · Ex.4 · Analyse',       C:<T5E4/> },
 }
 
 export default function App() {
@@ -515,7 +628,11 @@ export default function App() {
   return (
     <div className="app-container">
       <header className="header">
-        <div className="logo">Soltani <span className="logo-accent">Books</span></div>
+        <div className="logo">
+          <span className="logo-main">Soltani</span>
+          <br/>
+          <span className="logo-accent">Books</span>
+        </div>
         <div className="header-sub">Corrigés Détaillés</div>
       </header>
       <main className="main-content">
@@ -537,19 +654,18 @@ export default function App() {
             <div className="card-header">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <span className="exo-badge">{correction.badge}</span>
-                <a 
-                  href={`/assets/${exoId}.pdf`} 
-                  download 
+                <button 
+                  onClick={() => window.print()}
                   className="download-pdf-btn"
-                  title="Télécharger le PDF détaillé"
+                  title="Imprimer en PDF"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
                   </svg>
-                  <span>PDF Détaillé</span>
-                </a>
+                  <span>Imprimer PDF</span>
+                </button>
               </div>
               <h2 className="card-title">{correction.title}</h2>
             </div>
