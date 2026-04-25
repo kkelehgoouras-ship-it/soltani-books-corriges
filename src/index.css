@@ -229,6 +229,90 @@ h1, h2, h3, h4 {
   margin-bottom: 1rem;
 }
 
+/* ─── Étapes animées ───────────────────────────────────────────────── */
+.step {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease var(--delay, 0s), transform 0.5s ease var(--delay, 0s);
+}
+.step-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.step-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.step-number {
+  flex-shrink: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  color: white;
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.step-inner {
+  flex: 1;
+}
+.step-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+}
+.step-body {
+  background: var(--bg-color);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  border-left: 4px solid var(--step-color, #1d3a6e);
+}
+
+/* ─── Boîtes pédagogiques ───────────────────────────────────────────── */
+.info-box {
+  background: linear-gradient(135deg, #e8f4fd, #f0e8ff);
+  border: 1px solid #b8d4ef;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin: 0.8rem 0;
+  font-size: 0.9rem;
+  color: #1d3a6e;
+}
+.info-label {
+  font-weight: 700;
+  color: #7c3aed;
+  margin-right: 0.4rem;
+}
+.result-box {
+  background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+  border: 2px solid #16803c;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0 0;
+  text-align: center;
+  font-weight: 600;
+}
+.math-content p {
+  margin-bottom: 0.6rem;
+  line-height: 1.8;
+}
+.block-math {
+  margin: 0.8rem 0;
+  overflow-x: auto;
+  text-align: center;
+}
+
 /* Empty State */
 .empty-state {
   text-align: center;
