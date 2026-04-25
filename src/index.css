@@ -393,3 +393,90 @@ h1, h2, h3, h4 {
   box-shadow: 0 4px 12px rgba(224,41,110,0.4);
 }
 
+/* ─── Graphiques SVG ───────────────────────────────────────────────── */
+.graph-wrap {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+.graph-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #1d3a6e;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* ─── Tableau de variation ─────────────────────────────────────────── */
+.var-table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+.var-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+.var-table td {
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 0.8rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.var-header {
+  background: #1d3a6e;
+  color: white !important;
+  font-weight: 700;
+  width: 60px;
+}
+.var-x {
+  background: #f1f5f9;
+  font-weight: 600;
+  color: #1d3a6e;
+}
+.var-sign {
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: #fafafa;
+}
+.var-cell {
+  height: 80px;
+  padding: 0 !important;
+}
+.var-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 6px 4px;
+}
+.var-val {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #1d3a6e;
+}
+.var-arrow {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+/* ─── Séparateur de section ────────────────────────────────────────── */
+.section-label {
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7c3aed;
+  border-bottom: 2px solid #7c3aed;
+  padding-bottom: 0.2rem;
+  margin: 1rem 0 0.5rem;
+}

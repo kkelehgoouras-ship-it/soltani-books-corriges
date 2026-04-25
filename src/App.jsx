@@ -3,6 +3,7 @@ import katex from 'katex'
 import 'katex/dist/katex.min.css'
 import './index.css'
 import T from './formulas.json'
+import { ScatterPlot, FunctionCurve, VariationTable } from './charts.jsx'
 
 const tex = (s, d = false) => ({ __html: katex.renderToString(s, { throwOnError: false, displayMode: d }) })
 const IM = ({ t }) => <span dangerouslySetInnerHTML={tex(t)} />
@@ -101,47 +102,83 @@ function T1E2() { return (<>
 </>)}
 
 // ── T1-E3 ─────────────────────────────────────────────────────────────────────
+const STATS_PTS = [[0,398],[1,451],[2,423],[3,501],[4,673],[5,956],[6,1077],[7,1255],[8,1427],[9,1500]]
 function T1E3() { return (<>
-  <Step index={0} title="Ajustement affine — Méthode de Mayer">
+  <Step index={0} title="Calcul de U̅ et V̅">
+    <IB label="Données">Rangs xi ∈ [0;9], dépenses yi (millions DT)</IB>
     <IB label="Moyennes"><BM t={T.T1E3_stat} /></IB>
-    <IB label="Droite vérifiée"><BM t={T.T1E3_mayer_D} /></IB>
-    <RB>Estimation 2025 : <BM t={T.T1E3_est2025} /></RB>
+    <div className="section-label">Nuage de points</div>
+    <ScatterPlot
+      points={STATS_PTS}
+      xLabel="Rang xi" yLabel="yi (M DT)"
+      xmin={-0.5} xmax={9.5} ymin={200} ymax={1600}
+      xticks={[0,1,2,3,4,5,6,7,8,9]}
+      yticks={[400,600,800,1000,1200,1400,1600]}
+      lines={[{ a: 150.76, b: 187.68, color: '#e0296e' }]}
+      title="Nuage de points + Droite de Mayer (en rose)"
+    />
+    <IB label="Droite de Mayer vérifiée"><BM t={T.T1E3_mayer_D} /></IB>
+    <RB>Estimation 2025 (rang 10) : <BM t={T.T1E3_est2025} /></RB>
   </Step>
-  <Step index={1} title="Ajustement exponentiel — Changement Z = ln(Y)">
+  <Step index={1} title="Ajustement exponentiel — Z = ln(Y)">
     <IB label="Corrélation"><BM t={T.T1E3_r} /></IB>
     <IB label="Droite de Z en X"><BM t={T.T1E3_Zline} /></IB>
     <RB>Estimation 2025 : <BM t={T.T1E3_Y2025} /></RB>
   </Step>
-  <Step index={2} title="Quel ajustement est le meilleur ?">
-    <IB label="Données réelles 2023">Dépense = 68,9 × 0,028 ≈ 1929 millions DT (rang 8)</IB>
+  <Step index={2} title="Quel ajustement choisir ?">
+    <IB label="Réalité 2023">68,9 × 0,028 ≈ 1929 M DT (rang 8)</IB>
     <IB label="Affine (rang 8)"><IM t="150{,}76\times8+187{,}68=1393{,}76" /></IB>
     <IB label="Exponentiel (rang 8)"><IM t="e^{0{,}263\times8+5{,}68}\approx2398" /></IB>
-    <RB>L'ajustement <strong>affine</strong> est le plus proche de la réalité ✓</RB>
+    <RB>L'ajustement <strong>affine</strong> est le plus proche ✓</RB>
   </Step>
 </>)}
 
 // ── T1-E4 ─────────────────────────────────────────────────────────────────────
-function T1E4() { return (<>
-  <Step index={0} title="Limites et comportement asymptotique">
-    <BM t={T.T1E4_f} />
-    <IB label="En 0⁺"><BM t={T.T1E4_lim0} /> → asymptote verticale</IB>
-    <IB label="En +∞"><BM t={T.T1E4_liminf} /> → pas d'asymptote horizontale</IB>
-  </Step>
-  <Step index={1} title="Tableau de variation">
-    <BM t={T.T1E4_fp} />
-    <IB label="Signe"><BM t={T.T1E4_tab} /></IB>
-    <RB>Minimum en <IM t="x=e" /> : <BM t={T.T1E4_min} /></RB>
-  </Step>
-  <Step index={2} title="Primitive et intégrale">
-    <p>On vérifie que <IM t="g'(x)=e\ln x" /> :</p>
-    <BM t={T.T1E4_gp} />
-    <IB label="Primitive de f qui s'annule en 1"><BM t={T.T1E4_F} /></IB>
-  </Step>
-  <Step index={3} title="Aire entre (C) et Δ : y = x">
-    <BM t={T.T1E4_I} /><BM t={T.T1E4_I2} />
-    <RB><BM t={T.T1E4_Ires} /></RB>
-  </Step>
-</>)}
+function T1E4() {
+  const f14 = x => x - Math.E * Math.log(x)
+  const delta = x => x
+  return (<>
+    <Step index={0} title="Limites et comportement">
+      <BM t={T.T1E4_f} />
+      <IB label="En 0⁺"><BM t={T.T1E4_lim0} /> → asymptote verticale en x=0</IB>
+      <IB label="En +∞"><BM t={T.T1E4_liminf} /> → pas d'asymptote horizontale</IB>
+      <IB label="Pente à l'infini"><IM t="\lim_{x\to+\infty}\frac{f(x)}{x}=1" /> → la droite Δ: y=x est asymptote oblique</IB>
+    </Step>
+    <Step index={1} title="Dérivée et tableau de variation">
+      <BM t={T.T1E4_fp} />
+      <IB label="Signe de f'(x)"><BM t={T.T1E4_tab} /></IB>
+      <div className="section-label">Tableau de variation</div>
+      <VariationTable
+        xVals={[{ tex: '0^+' }, { tex: 'e' }, { tex: '+\\infty' }]}
+        signs={['-', '+']}
+        arrows={['down', 'up']}
+        fVals={[{ tex: '+\\infty', pos: 'top' }, { tex: '0', pos: 'bot' }, { tex: '+\\infty', pos: 'top' }]}
+      />
+      <RB>Minimum en <IM t="x=e" /> : <BM t={T.T1E4_min} /></RB>
+    </Step>
+    <Step index={2} title="Courbe (C) et droite Δ: y=x">
+      <div className="section-label">Tracé de la courbe</div>
+      <FunctionCurve
+        fn={f14}
+        xmin={0.15} xmax={6} ymin={-0.5} ymax={6}
+        xticks={[1,2,3,4,5]} yticks={[0,1,2,3,4,5]}
+        title="(C): f(x) = x − e·ln(x)  et  Δ: y = x (en pointillé)"
+        extra={[{ type:'fn', fn: delta, color:'#e0296e', dash: true }]}
+      />
+      <IB label="Position de (C) et Δ">Pour <IM t="x>0" /> : <IM t="f(x)-x=-e\ln x" />. Signe = signe de <IM t="-\ln x" /></IB>
+      <IB label="Conclusion"><IM t="(C)" /> au-dessus de Δ pour <IM t="x\in]0;1[" />, en dessous pour <IM t="x>1" /></IB>
+    </Step>
+    <Step index={3} title="Primitive F et intégrale">
+      <p>On vérifie <IM t="g'(x)=e\ln x" /> :</p>
+      <BM t={T.T1E4_gp} />
+      <IB label="Primitive de f s'annulant en 1"><BM t={T.T1E4_F} /></IB>
+      <div className="section-label">Calcul de l'intégrale</div>
+      <BM t={T.T1E4_I} />
+      <BM t={T.T1E4_I2} />
+      <RB><BM t={T.T1E4_Ires} /></RB>
+    </Step>
+  </>)
+}
 
 // ── T2-E1 ─────────────────────────────────────────────────────────────────────
 function T2E1() { return (<>
