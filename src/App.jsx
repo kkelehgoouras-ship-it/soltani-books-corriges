@@ -1,23 +1,25 @@
 import { useState, useEffect } from 'react'
+import 'katex/dist/katex.min.css'
+import Latex from 'react-latex-next'
 import './index.css'
 
-// Mock database for corrections
+// Mock database for corrections (with LaTeX)
 const correctionsDB = {
   'T1-E1': {
     title: 'Étude de fonction et Limites',
     badge: 'Analyse - Chapitre 1',
     steps: [
       {
-        title: '1. Calcul de la limite en +∞',
-        content: "On factorise par le terme de plus haut degré : f(x) = x²(1 - 2/x + 1/x²). La limite de x² est +∞ et la parenthèse tend vers 1. Donc la limite finale est +∞."
+        title: '1. Calcul de la limite en $+\\infty$',
+        content: "On factorise par le terme de plus haut degré :\n$$f(x) = x^2\\left(1 - \\frac{2}{x} + \\frac{1}{x^2}\\right)$$\n\nComme $\\lim_{x \\to +\\infty} x^2 = +\\infty$ et $\\lim_{x \\to +\\infty} \\left(1 - \\frac{2}{x} + \\frac{1}{x^2}\\right) = 1$, la limite finale est $+\\infty$."
       },
       {
         title: '2. Calcul de la dérivée',
-        content: "On utilise la formule (uv)' = u'v + uv'.\nf'(x) = 2x - 2 = 2(x - 1).\nLa dérivée s'annule en x = 1."
+        content: "On utilise la formule de dérivation d'un polynôme :\n$$f'(x) = 2x - 2 = 2(x - 1)$$\nLa dérivée s'annule en $x = 1$."
       },
       {
         title: '3. Tableau de variation',
-        content: "Pour x < 1, f'(x) < 0 donc f est décroissante.\nPour x > 1, f'(x) > 0 donc f est croissante.\nLe minimum est atteint en x = 1 et vaut f(1) = 0."
+        content: "Pour $x < 1$, $f'(x) < 0$ donc $f$ est strictement décroissante.\nPour $x > 1$, $f'(x) > 0$ donc $f$ est strictement croissante.\nLe minimum est atteint en $x = 1$ et vaut $f(1) = -1$."
       }
     ]
   },
@@ -27,15 +29,15 @@ const correctionsDB = {
     steps: [
       {
         title: '1. Arbre de probabilité',
-        content: "On construit l'arbre avec P(A) = 0.6 et P(B|A) = 0.8. P(A barre) = 1 - 0.6 = 0.4."
+        content: "On construit l'arbre avec $P(A) = 0.6$ et $P(B|A) = 0.8$.\n\nOn a donc $P(\\overline{A}) = 1 - 0.6 = 0.4$."
       },
       {
-        title: '2. Calcul de P(A ∩ B)',
-        content: "P(A ∩ B) = P(A) × P(B|A) = 0.6 × 0.8 = 0.48."
+        title: '2. Calcul de $P(A \\cap B)$',
+        content: "D'après la formule des probabilités conditionnelles :\n$$P(A \\cap B) = P(A) \\times P(B|A) = 0.6 \\times 0.8 = 0.48$$"
       },
       {
         title: '3. Formule des probabilités totales',
-        content: "P(B) = P(A ∩ B) + P(A barre ∩ B) = 0.48 + 0.4 × 0.3 = 0.60."
+        content: "Les événements $A$ et $\\overline{A}$ forment une partition de l'univers, donc :\n$$P(B) = P(A \\cap B) + P(\\overline{A} \\cap B) = 0.48 + 0.4 \\times 0.3 = 0.60$$"
       }
     ]
   }
@@ -88,7 +90,7 @@ function App() {
         <div className="logo">
           Soltani <span className="logo-accent">Books</span>
         </div>
-        <div>
+        <div style={{fontWeight: 600}}>
           Corrigés Détaillés
         </div>
       </header>
@@ -114,13 +116,15 @@ function App() {
           <article className="correction-card">
             <div className="card-header">
               <span className="exo-badge">{correction.badge}</span>
-              <h2 className="card-title">Exercice {exoId} : {correction.title}</h2>
+              <h2 className="card-title">Exercice {exoId} : <Latex>{correction.title}</Latex></h2>
             </div>
             <div className="card-body">
               {correction.steps.map((step, index) => (
                 <div key={index} className="step">
-                  <h3 className="step-title">{step.title}</h3>
-                  <p>{step.content}</p>
+                  <h3 className="step-title"><Latex>{step.title}</Latex></h3>
+                  <div className="math-block">
+                    <Latex>{step.content}</Latex>
+                  </div>
                 </div>
               ))}
             </div>
