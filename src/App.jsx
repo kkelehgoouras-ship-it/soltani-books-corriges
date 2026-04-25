@@ -348,6 +348,20 @@ function T3E1() { return (<>
   </Step>
 </>)}
 
+// ── T3-E2 ─────────────────────────────────────────────────────────────────────
+function T3E2() { return (<>
+  <Step index={0} title="Graphe et Matrice">
+    <IB label="Graphe orienté"><BM t={T.T3E2_orient} /></IB>
+    <IB label="Arêtes"><BM t={T.T3E2_aretes} /></IB>
+    <RB><BM t={T.T3E2_eul} /></RB>
+  </Step>
+  <Step index={1} title="Chemins et Tournée minimale">
+    <IB label="Chemins de A à A (longueur 6)"><BM t={T.T3E2_M6} /></IB>
+    <IB label="Cycles complets"><BM t={T.T3E2_cyc} /></IB>
+    <RB>Durée minimale : <BM t={T.T3E2_poids} /></RB>
+  </Step>
+</>)}
+
 // ── T3-E3 Probabilités ────────────────────────────────────────────────────────
 function T3E3() { return (<>
   <Step index={0} title="Arbre de probabilités">
@@ -364,6 +378,52 @@ function T3E3() { return (<>
   <Step index={3} title="Au moins 1 habitant avec problème de dos (n=3)">
     <BM t={T.T3E3_Pau3} /><BM t={T.T3E3_Pau3r} />
     <RB><IM t="P(\text{au moins 1})\approx0{,}176" /></RB>
+  </Step>
+</>)}
+
+// ── T3-E4 ─────────────────────────────────────────────────────────────────────
+function T3E4() { 
+  const f34 = x => Math.log(x) / x
+  return (<>
+  <Step index={0} title="Limites et Asymptotes">
+    <BM t={T.T3E4_f} />
+    <IB label="En 0⁺"><BM t={T.T3E4_lim0} /></IB>
+    <IB label="En +∞"><BM t={T.T3E4_liminf} /></IB>
+  </Step>
+  <Step index={1} title="Dérivée et Variations">
+    <IB label="Dérivée"><BM t={T.T3E4_fp} /></IB>
+    <IB label="Signe"><BM t={T.T3E4_signe} /></IB>
+    <div className="section-label">Tableau de variation</div>
+    <VariationTable
+      xVals={[{ tex: '0' }, { tex: 'e' }, { tex: '+\\infty' }]}
+      signs={['+', '-']}
+      arrows={['up', 'down']}
+      fVals={[{ tex: '-\\infty', pos: 'bot' }, { tex: '1/e', pos: 'top' }, { tex: '0', pos: 'bot' }]}
+    />
+  </Step>
+  <Step index={2} title="Racine et Signe">
+    <IB label="Racine de f"><BM t={T.T3E4_zero} /></IB>
+    <RB>f(x) &lt; 0 sur ]0;1[ et f(x) &gt; 0 sur ]1;+∞[ ✓</RB>
+  </Step>
+  <Step index={3} title="Courbe (C)">
+    <div className="section-label">Tracé de f(x)</div>
+    <FunctionCurve
+      fn={f34}
+      xmin={0.1} xmax={6} ymin={-1} ymax={0.5}
+      xticks={[1,2,3,4,5]} yticks={[-1,-0.5,0,0.5]}
+      title="(C): f(x) = ln(x) / x"
+      extra={[
+        { type:'hline', y:0, color:'#94a3b8' },
+        { type:'vline', x:0, color:'#94a3b8' },
+        { type:'point', x:1, y:0, color:'#e0296e' },
+        { type:'point', x:Math.E, y:1/Math.E, color:'#e0296e' }
+      ]}
+    />
+  </Step>
+  <Step index={4} title="Primitive et Aire">
+    <IB label="Primitive g(x)"><BM t={T.T3E4_g} /></IB>
+    <IB label="Intégrale"><BM t={T.T3E4_I} /></IB>
+    <RB>L'aire (f(x) &gt; 0 sur [1;e]) est : <BM t={T.T3E4_S} /></RB>
   </Step>
 </>)}
 
@@ -429,7 +489,9 @@ const DB = {
   'T2-E3': { title:'Statistiques',             badge:'Sujet 2 · Ex.3 · Stats',         C:<T2E3/> },
   'T2-E4': { title:'Étude de Fonction — Exp',  badge:'Sujet 2 · Ex.4 · Analyse',       C:<T2E4/> },
   'T3-E1': { title:'Matrices et Suites',       badge:'Sujet 3 · Ex.1 · Algèbre',       C:<T3E1/> },
+  'T3-E2': { title:'Théorie des Graphes',      badge:'Sujet 3 · Ex.2 · Graphes',       C:<T3E2/> },
   'T3-E3': { title:'Probabilités',             badge:'Sujet 3 · Ex.3 · Proba',         C:<T3E3/> },
+  'T3-E4': { title:'Étude de Fonction — Ln',   badge:'Sujet 3 · Ex.4 · Analyse',       C:<T3E4/> },
   'T4-E1': { title:'Matrices',                 badge:'Sujet 4 · Ex.1 · Algèbre',       C:<T4E1/> },
   'T4-E2': { title:'Suites Numériques',        badge:'Sujet 4 · Ex.2 · Analyse',       C:<T4E2/> },
   'T5-E1': { title:'Matrices et Fonctions',    badge:'Sujet 5 · Ex.1 · Algèbre',       C:<T5E1/> },
@@ -473,7 +535,22 @@ export default function App() {
         {searched && correction && (
           <article className="correction-card">
             <div className="card-header">
-              <span className="exo-badge">{correction.badge}</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <span className="exo-badge">{correction.badge}</span>
+                <a 
+                  href={`/assets/${exoId}.pdf`} 
+                  download 
+                  className="download-pdf-btn"
+                  title="Télécharger le PDF détaillé"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>PDF Détaillé</span>
+                </a>
+              </div>
               <h2 className="card-title">{correction.title}</h2>
             </div>
             <div className="card-body">{correction.C}</div>
