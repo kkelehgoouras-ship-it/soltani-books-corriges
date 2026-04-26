@@ -654,18 +654,33 @@ export default function App() {
             <div className="card-header">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <span className="exo-badge">{correction.badge}</span>
-                <button 
-                  onClick={() => window.print()}
-                  className="download-pdf-btn"
-                  title="Imprimer en PDF"
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-                    <rect x="6" y="14" width="12" height="8"></rect>
-                  </svg>
-                  <span>Imprimer PDF</span>
-                </button>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <a 
+                    href={`/assets/${exoId}.pdf`} 
+                    download 
+                    className="download-pdf-btn"
+                    title="Télécharger le PDF original"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>Télécharger PDF</span>
+                  </a>
+                  <button 
+                    onClick={() => window.print()}
+                    className="download-pdf-btn"
+                    title="Imprimer en PDF"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                      <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                    <span>Imprimer PDF</span>
+                  </button>
+                </div>
               </div>
               <h2 className="card-title">{correction.title}</h2>
             </div>
