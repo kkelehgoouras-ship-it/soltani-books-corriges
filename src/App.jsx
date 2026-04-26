@@ -655,7 +655,7 @@ export default function App() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <span className="exo-badge">{correction.badge}</span>
                 <a 
-                  href={`/assets/${exoId}.pdf`} 
+                  href={`${import.meta.env.BASE_URL}assets/${exoId}.pdf`} 
                   download 
                   className="download-pdf-btn"
                   title="Télécharger le corrigé détaillé (PDF)"
