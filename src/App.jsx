@@ -1356,6 +1356,10 @@ export default function App() {
   const load = (id) => { setSearched(true); setCorrection(DB[id] || null) }
   const nav = (k) => { setInput(k); setExoId(k); load(k); const u = new URL(window.location); u.searchParams.set('exo', k); window.history.pushState({}, '', u) }
   const submit = (e) => { e.preventDefault(); const id = input.trim().toUpperCase(); nav(id) }
+  // Pour les Tests: TEST1-E1 → TEST1.pdf (un seul PDF par test). Pour les sujets: T1-E1 → T1-E1.pdf
+  const simplePdfName = (id) => id.startsWith('TEST') ? id.split('-')[0] : id
+  // Belfallagui: belfallagui_T1.pdf ou belfallagui_TEST1.pdf
+  const belPdfName = (id) => `belfallagui_${id.split('-')[0]}`
 
   return (
     <div className="app-container">
@@ -1388,7 +1392,7 @@ export default function App() {
                 <span className="exo-badge">{correction.badge}</span>
                 <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
                   <a 
-                    href={`${import.meta.env.BASE_URL}assets/belfallagui_${exoId.split('-')[0]}.pdf`} 
+                    href={`${import.meta.env.BASE_URL}assets/${belPdfName(exoId)}.pdf`} 
                     download 
                     className="download-pdf-btn"
                     style={{ background: 'linear-gradient(135deg, #F51E65, #c9104b)', borderColor: '#F51E65' }}
@@ -1404,7 +1408,7 @@ export default function App() {
                     <span>Version Belfallagui</span>
                   </a>
                   <a 
-                    href={`${import.meta.env.BASE_URL}assets/${exoId}.pdf`} 
+                    href={`${import.meta.env.BASE_URL}assets/${simplePdfName(exoId)}.pdf`} 
                     download 
                     className="download-pdf-btn"
                     title="Télécharger le corrigé détaillé (PDF)"
