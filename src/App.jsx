@@ -1467,10 +1467,6 @@ export default function App() {
             <input className="search-input" type="text" placeholder="Code exercice (ex: T1-E1)" value={input} onChange={e => setInput(e.target.value)} />
             <button className="search-button" type="submit">Rechercher</button>
           </form>
-          <div className="available-codes">
-            <span>Disponibles :</span>
-            {Object.keys(DB).map(k => <button key={k} className="code-chip" onClick={() => nav(k)}>{k}</button>)}
-          </div>
         </section>
 
         {searched && correction && (
