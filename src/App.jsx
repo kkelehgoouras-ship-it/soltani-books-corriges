@@ -1127,6 +1127,141 @@ function T10E4() { return (<>
   </Step>
 </>)}
 
+// ── TEST 1 ────────────────────────────────────────────────────────────────────
+function TEST1E1() { return (<>
+  <Step index={0} title="Fonctions Exponentielles — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;\\lim_{x\\to-\\infty}f(x)=-1 \\quad 2)\\;f'(x)=(x^2+x-1)e^x \\quad 3)\\;e^{1+2\\ln2}-e^{1-\\ln2}=\\frac{7e}{2}"} />
+  </IB><RB><BM t={"4)\\;\\int_0^1 2e^{-2x}\\,dx = 1-e^{-2}"} /></RB></Step>
+</>)}
+function TEST1E2() { return (<>
+  <Step index={0} title="Graphes et Matrices — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;\\text{Non orienté}\\quad 2)\\;5\\text{ arêtes}\\quad 3)\\;\\text{Non, 2 sommets impairs}"} />
+  </IB><RB><BM t={"4)\\;M^2 \\text{ = nombre de chaînes de longueur 2}"} /></RB></Step>
+</>)}
+function TEST1E3() { return (<>
+  <Step index={0} title="Probabilités — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;p(A\\cap B)=0{,}08\\quad 2)\\;p(A\\cup B)=0{,}62\\quad 3)\\;p=0{,}4"} />
+  </IB><RB><BM t={"4)\\;p(X=1)=\\tfrac{54}{125}"} /></RB></Step>
+</>)}
+function TEST1E4() { return (<>
+  <Step index={0} title="Statistiques — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;Y=3{,}5X+2{,}3\\quad 2)\\;a=3{,}5\\quad 3)\\;\\text{Ajustement fort}"} />
+  </IB><RB><BM t={"4)\\;Y(5)=19{,}8"} /></RB></Step>
+</>)}
+function TEST1E5() { return (<>
+  <Step index={0} title="Suites Numériques — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;V_0=-4\\quad 2)\\;q=\\tfrac{1}{3}\\quad 3)\\;V_n=-4\\times(\\tfrac{1}{3})^n"} />
+  </IB><RB><BM t={"4)\\;\\lim U_n = 6"} /></RB></Step>
+</>)}
+
+// ── TEST 2 ────────────────────────────────────────────────────────────────────
+function TEST2E1() { return (<>
+  <Step index={0} title="Fonctions Logarithmes — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;0\\quad 2)\\;f'(x)=-\\frac{e^{-x}}{1+e^{-x}}\\quad 3)\\;\\ln(4e)+\\ln(e/2)-\\ln(2/e^2)=4"} />
+  </IB><RB><BM t={"4)\\;\\int_1^e(1+\\tfrac{2}{x})dx = e-1+2"} /></RB></Step>
+</>)}
+function TEST2E2() { return (<>
+  <Step index={0} title="Analyse Graphique — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;g'(-2)=4\\quad 2)\\;\\lim_{x\\to-\\infty}\\frac{g(x)}{x}=0\\quad 3)\\;\\lim_{x\\to+\\infty}(g(x)-x)=1"} />
+  </IB><RB><BM t={"4)\\;\\text{La courbe coupe (Ox) 2 fois}"} /></RB></Step>
+</>)}
+function TEST2E3() { return (<>
+  <Step index={0} title="Matrices et Systèmes — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;\\det(A)=-1\\quad 2)\\;A(A+I_3)=\\begin{pmatrix}2&-1&0\\\\1&1&-1\\\\2&0&0\\end{pmatrix}"} />
+  </IB><RB><BM t={"3)\\;\\text{Matrice de (S) correcte}\\quad 4)\\;1\\text{ solution unique}"} /></RB></Step>
+</>)}
+function TEST2E4() { return (<>
+  <Step index={0} title="Suites Numériques — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;U_n=\\frac{2-n}{2}\\quad 2)\\;\\text{Décroissante}\\quad 3)\\;\\lim U_n=-\\infty"} />
+  </IB><RB><BM t={"4)\\;\\lim_{n\\to+\\infty}n\\,e^{-n+1}=0"} /></RB></Step>
+</>)}
+function TEST2E5() { return (<>
+  <Step index={0} title="Graphes Probabilistes — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;P(B\\to A)=0{,}2\\quad 2)\\;P_1=(0{,}6\\;\\;0{,}4)\\quad 3)\\;\\text{État stable}: a=\\tfrac{1}{3},b=\\tfrac{2}{3}"} />
+  </IB><RB><BM t={"4)\\;a+b=1 \\text{ toujours}"} /></RB></Step>
+</>)}
+
+// ── TEST 3 ────────────────────────────────────────────────────────────────────
+function TEST3E1() { return (<>
+  <Step index={0} title="Matrices ordre 3 — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;\\det(A)=8\\quad 2)\\;AX=\\begin{pmatrix}2\\\\3\\\\1\\end{pmatrix}\\quad 3)\\;X=A^{-1}\\begin{pmatrix}2\\\\3\\\\1\\end{pmatrix}"} />
+  </IB><RB><BM t={"4)\\;A^{-1}=\\tfrac{1}{8}(3I_3-A)"} /></RB></Step>
+</>)}
+function TEST3E2() { return (<>
+  <Step index={0} title="Théorie des Graphes — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;d^+(A)=2\\quad 2)\\;\\text{Oui, }d^+(A)=d^-(A)\\quad 3)\\;1\\text{ chemin de long.2 de B vers C}"} />
+  </IB><RB><BM t={"4)\\;6\\text{ arcs}"} /></RB></Step>
+</>)}
+function TEST3E3() { return (<>
+  <Step index={0} title="Probabilités et Suites — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;E(X)=-0{,}5\\text{ DT}\\quad 2)\\;\\mathcal{B}(4;0{,}3)\\quad 3)\\;C_4^2(0{,}3)^2(0{,}7)^2"} />
+  </IB><RB><BM t={"4)\\;\\lim U_n=3"} /></RB></Step>
+</>)}
+function TEST3E4() { return (<>
+  <Step index={0} title="Analyse et Aires — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;F(0)=2,\\,F(2)=0\\quad 2)\\;C_F\\text{ admet une tangente horizontale}\\quad 3)\\;\\int_0^1 f(x)\\,dx"} />
+  </IB><RB><BM t={"4)\\;\\mathcal{A}=e-2\\text{ u.a.}"} /></RB></Step>
+</>)}
+function TEST3E5() { return (<>
+  <Step index={0} title="Statistiques — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;\\bar{X}=2\\quad 2)\\;|r|\\approx 1\\quad 3)\\;Y(10)=26"} />
+  </IB><RB><BM t={"4)\\;r\\text{ est positif}"} /></RB></Step>
+</>)}
+
+// ── TEST 4 ────────────────────────────────────────────────────────────────────
+function TEST4E1() { return (<>
+  <Step index={0} title="Matrices et Résolution — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;\\det(A)=4\\quad 2)\\;A^{-1}=\\tfrac{1}{4}(5I_3-A)\\quad 3)\\;\\text{Somme L1}=4"} />
+  </IB><RB><BM t={"4)\\;(\\tfrac{1}{4},\\tfrac{1}{4},\\tfrac{1}{4})"} /></RB></Step>
+</>)}
+function TEST4E2() { return (<>
+  <Step index={0} title="Graphes Probabilistes — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;P_1=(0{,}55\\;\\;0{,}45)\\quad 2)\\;P=P\\times M\\quad 3)\\;a=0{,}6"} />
+  </IB><RB><BM t={"4)\\;K_4\\text{ a 6 arêtes}"} /></RB></Step>
+</>)}
+function TEST4E3() { return (<>
+  <Step index={0} title="Probabilités Conditionnelles — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;p(F\\cap L)=0{,}18\\quad 2)\\;p(L)=0{,}26\\quad 3)\\;p(F|L)\\approx 0{,}692"} />
+  </IB><RB><BM t={"4)\\;1-(0{,}74)^3"} /></RB></Step>
+</>)}
+function TEST4E4() { return (<>
+  <Step index={0} title="Analyse f(x)=xeˣ — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;\\lim_{x\\to-\\infty}xe^x=0\\quad 2)\\;F'(x)=xe^x\\quad 3)\\;\\text{minimum en }x=-1"} />
+  </IB><RB><BM t={"4)\\;\\int_1^2 xe^x\\,dx = e^2"} /></RB></Step>
+</>)}
+function TEST4E5() { return (<>
+  <Step index={0} title="Suites et Limites — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;W_n=3\\times(0{,}2)^n\\quad 2)\\;\\lim W_n=0\\quad 3)\\;\\lim S_n=\\tfrac{15}{4}\\text{ et }\\tfrac{3}{0{,}8}\\text{ (les deux)}"} />
+  </IB><RB><BM t={"4)\\;n=4"} /></RB></Step>
+</>)}
+
+// ── TEST 5 ────────────────────────────────────────────────────────────────────
+function TEST5E1() { return (<>
+  <Step index={0} title="Analyse Graphique et Primitives — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;\\Delta: y=x-1\\quad 2)\\;\\lim(f(x)-(x-1))=0\\quad 3)\\;(\\mathcal{C})\\text{ est au dessus de }(\\Delta)"} />
+  </IB><RB><BM t={"4)\\;F(x)=\\tfrac{1}{2}x^2-x+\\ln(x)"} /></RB></Step>
+</>)}
+function TEST5E2() { return (<>
+  <Step index={0} title="Loi Binomiale — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;\\sigma(X)=1{,}2\\quad 2)\\;\\mathcal{B}(5;0{,}3)\\quad 3)\\;E(Y)=1{,}5"} />
+  </IB><RB><BM t={"4)\\;P(Y=0)=(0{,}7)^5"} /></RB></Step>
+</>)}
+function TEST5E3() { return (<>
+  <Step index={0} title="Suites et Matrices — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;V_n=U_n-6\\text{ géom. de raison }\\tfrac{1}{2}\\quad 2)\\;\\lim U_n=6\\quad 3)\\;\\det(A)=3"} />
+  </IB><RB><BM t={"4)\\;\\text{1ère colonne de }A^{-1}=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}"} /></RB></Step>
+</>)}
+function TEST5E4() { return (<>
+  <Step index={0} title="Graphes — Dijkstra — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;X=8(B),\\,Y=9(C)\\quad 2)\\;d(A,F)=11\\quad 3)\\;\\text{Diamètre}=4"} />
+  </IB><RB><BM t={"4)\\;\\text{Non}"} /></RB></Step>
+</>)}
+function TEST5E5() { return (<>
+  <Step index={0} title="Logarithmes et Inéquations — QCM"><IB label="Réponses correctes">
+    <BM t={"1)\\;D_f=]0,+\\infty[\\quad 2)\\;X=1\\text{ et }X=2\\quad 3)\\;x=e\\text{ et }x=e^2"} />
+  </IB><RB><BM t={"4)\\;\\ln(x)>1\\iff x\\in]e,+\\infty["} /></RB></Step>
+</>)}
+
 const DB = {
   'T1-E1': { title:'Matrices et Systèmes',    badge:'Sujet 1 · Ex.1 · Algèbre',       C:<T1E1/> },
   'T1-E2': { title:'Suites Numériques',        badge:'Sujet 1 · Ex.2 · Analyse',       C:<T1E2/> },
