@@ -9,6 +9,29 @@ const tex = (s, d = false) => ({ __html: katex.renderToString(s, { throwOnError:
 const IM = ({ t }) => <span dangerouslySetInnerHTML={tex(t)} />
 const BM = ({ t }) => <div className="block-math" dangerouslySetInnerHTML={tex(t, true)} />
 
+const StatTable = ({ data }) => (
+  <div className="stat-table-wrap">
+    <table className="stat-table">
+      <thead>
+        <tr>
+          <th>Paramètre</th>
+          <th>Formule</th>
+          <th>Résultat</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((row, i) => (
+          <tr key={i}>
+            <td>{row.label}</td>
+            <td>{row.f ? <BM t={row.f} /> : null}</td>
+            <td>{row.r ? <BM t={row.r} /> : null}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)
+
 const COLORS = ['#1d3a6e','#e0296e','#00b4a6','#7c3aed','#ea7c1e','#16803c','#dc2626']
 function Step({ children, index, title }) {
   const ref = useRef(null)
@@ -133,7 +156,10 @@ const STATS_PTS = [[0,398],[1,451],[2,423],[3,501],[4,673],[5,956],[6,1077],[7,1
 function T1E3() { return (<>
   <Step index={0} title="Calcul de U̅ et V̅">
     <IB label="Données">Rangs xi ∈ [0;9], dépenses yi (millions DT)</IB>
-    <IB label="Moyennes"><BM t={T.T1E3_stat} /></IB>
+    <StatTable data={[
+      { label: "Moyennes", f: "\\bar{x}, \\bar{y}", r: "\\bar{x}=4{,}5,\\quad \\bar{y}=766{,}1" },
+      { label: "Droite de Mayer", f: "y = ax + b", r: "y=150{,}76x+187{,}68" }
+    ]} />
     <div className="section-label">Nuage de points</div>
     <ScatterPlot
       points={STATS_PTS}
@@ -144,12 +170,13 @@ function T1E3() { return (<>
       lines={[{ a: 150.76, b: 187.68, color: '#e0296e' }]}
       title="Nuage de points + Droite de Mayer (en rose)"
     />
-    <IB label="Droite de Mayer vérifiée"><BM t={T.T1E3_mayer_D} /></IB>
     <RB>Estimation 2025 (rang 10) : <BM t={T.T1E3_est2025} /></RB>
   </Step>
   <Step index={1} title="Ajustement exponentiel — Z = ln(Y)">
-    <IB label="Corrélation"><BM t={T.T1E3_r} /></IB>
-    <IB label="Droite de Z en X"><BM t={T.T1E3_Zline} /></IB>
+    <StatTable data={[
+      { label: "Corrélation r", f: "r(X,Z)", r: "\\approx 0{,}97" },
+      { label: "Droite de Z en X", f: "Z = aX + b", r: "Z=0{,}263x+5{,}68" }
+    ]} />
     <RB>Estimation 2025 : <BM t={T.T1E3_Y2025} /></RB>
   </Step>
   <Step index={2} title="Quel ajustement choisir ?">
@@ -251,8 +278,14 @@ function T2E2() { return (<>
 const STATS2_PTS = [[1,8.6],[6,9],[11,9.5],[16,9.4],[21,9.5]]
 function T2E3() { return (<>
   <Step index={0} title="Moyennes et Covariance">
-    <IB label="Valeurs"><BM t={T.T2E3_stat} /></IB>
-    <IB label="Corrélation"><BM t={T.T2E3_r} /></IB>
+    <StatTable data={[
+      { label: "Moyenne X", f: "\\overline{X}", r: "11" },
+      { label: "Moyenne Y", f: "\\overline{Y}", r: "9{,}2" },
+      { label: "Écart-type X", f: "\\sigma_X", r: "\\approx 7{,}07" },
+      { label: "Écart-type Y", f: "\\sigma_Y", r: "\\approx 0{,}35" },
+      { label: "Covariance", f: "\\text{Cov}(X,Y)", r: "2{,}3" },
+      { label: "Corrélation r", f: "r = \\frac{\\text{Cov}(X,Y)}{\\sigma_X\\sigma_Y}", r: "\\approx 0{,}92" }
+    ]} />
     <RB>{T.T2E3_rint}</RB>
   </Step>
   <Step index={1} title="Ajustement Affine (Moindres Carrés)">
@@ -266,8 +299,10 @@ function T2E3() { return (<>
       lines={[{ a: 0.046, b: 8.694, color: '#e0296e' }]}
       title="Nuage de points + Droite de régression"
     />
-    <IB label="Calcul de a"><BM t={T.T2E3_a} /></IB>
-    <IB label="Calcul de b"><BM t={T.T2E3_b} /></IB>
+    <StatTable data={[
+      { label: "Coefficient a", f: "a = \\frac{\\text{Cov}(X,Y)}{V(X)}", r: "0{,}046" },
+      { label: "Coefficient b", f: "b = \\overline{Y} - a\\overline{X}", r: "8{,}694" }
+    ]} />
     <RB><BM t={T.T2E3_D} /></RB>
   </Step>
   <Step index={2} title="Estimations et Calcul de prix">
@@ -472,12 +507,16 @@ function T4E3() { return (<>
       yticks={[400,500,600,700,800,900]}
       title="Nuage de points (Années 2017-2024)"
     />
-    <IB label="Corrélation"><BM t={T.T4E3_r} /></IB>
+    <StatTable data={[
+      { label: "Corrélation r", f: "r = \\frac{\\text{Cov}(X,Y)}{\\sigma_X\\sigma_Y}", r: "\\approx 0{,}982" }
+    ]} />
     <RB>{T.T4E3_rjust}</RB>
   </Step>
   <Step index={1} title="Ajustement exponentiel (z = ln y)">
-    <IB label="Droite de z en x"><BM t={T.T4E3_Z} /></IB>
-    <IB label="Expression de y"><BM t={T.T4E3_Y} /></IB>
+    <StatTable data={[
+      { label: "Droite de z en x", f: "z = ax + b", r: "z = 0{,}096x + 6{,}080" },
+      { label: "Expression de y", f: "y = e^{ax+b}", r: "y \\approx 437e^{0{,}096x}" }
+    ]} />
     <RB><BM t={T.T4E3_est2026} /></RB>
   </Step>
 </>)}
@@ -773,8 +812,10 @@ function T7E3() { return (<>
       lines={[{ a: -5.196, b: 6.791, color: '#e0296e' }]}
       title="Nuage de points et droite de régression D1"
     />
-    <IB label="Corrélation Y/X"><BM t={T.T7E3_r1} /></IB>
-    <IB label="Droite D1"><BM t={T.T7E3_D1} /></IB>
+    <StatTable data={[
+      { label: "Corrélation r", f: "r(X,Y)", r: "\\approx -0{,}897" },
+      { label: "Droite D1", f: "Y = aX + b", r: "Y = -5{,}196 X + 6{,}791" }
+    ]} />
     <RB><BM t={T.T7E3_Est} /></RB>
   </Step>
   <Step index={1} title="Ajustement de l'Offre (Z)">
@@ -1042,8 +1083,10 @@ function T10E1() { return (<>
       lines={[{ a: 8.64, b: 38.26, color: '#e0296e' }]}
       title="Nuage de points et droite de régression D"
     />
-    <IB label="Corrélation linéaire"><BM t={T.T10E1_r} /></IB>
-    <IB label="Équation de D"><BM t={T.T10E1_D} /></IB>
+    <StatTable data={[
+      { label: "Corrélation r", f: "r(X,Y)", r: "\\approx 0{,}978" },
+      { label: "Droite D", f: "y = ax + b", r: "y = 8{,}64x + 38{,}26" }
+    ]} />
   </Step>
   <Step index={1} title="Estimations pour 2022">
     <IB label="Par ajustement affine"><BM t={T.T10E1_EstAff} /></IB>
@@ -1144,9 +1187,14 @@ function TEST1E3() { return (<>
   </IB><RB><BM t={"4)\\;p(X=1)=\\tfrac{54}{125}"} /></RB></Step>
 </>)}
 function TEST1E4() { return (<>
-  <Step index={0} title="Statistiques — QCM"><IB label="Réponses correctes">
-    <BM t={"1)\\;Y=3{,}5X+2{,}3\\quad 2)\\;a=3{,}5\\quad 3)\\;\\text{Ajustement fort}"} />
-  </IB><RB><BM t={"4)\\;Y(5)=19{,}8"} /></RB></Step>
+  <Step index={0} title="Statistiques — QCM">
+    <StatTable data={[
+      { label: "1) Droite", f: "Y = aX+b", r: "Y=3{,}5X+2{,}3" },
+      { label: "2) Coefficient", f: "a", r: "a=3{,}5" },
+      { label: "3) Ajustement", r: "\\text{Ajustement fort}" },
+      { label: "4) Estimation", f: "Y(5)", r: "19{,}8" }
+    ]} />
+  </Step>
 </>)}
 function TEST1E5() { return (<>
   <Step index={0} title="Suites Numériques — QCM"><IB label="Réponses correctes">
@@ -1203,9 +1251,14 @@ function TEST3E4() { return (<>
   </IB><RB><BM t={"4)\\;\\mathcal{A}=e-2\\text{ u.a.}"} /></RB></Step>
 </>)}
 function TEST3E5() { return (<>
-  <Step index={0} title="Statistiques — QCM"><IB label="Réponses correctes">
-    <BM t={"1)\\;\\bar{X}=2\\quad 2)\\;|r|\\approx 1\\quad 3)\\;Y(10)=26"} />
-  </IB><RB><BM t={"4)\\;r\\text{ est positif}"} /></RB></Step>
+  <Step index={0} title="Statistiques — QCM">
+    <StatTable data={[
+      { label: "1) Moyenne", f: "\\bar{X}", r: "2" },
+      { label: "2) Corrélation", f: "|r|", r: "\\approx 1" },
+      { label: "3) Estimation", f: "Y(10)", r: "26" },
+      { label: "4) Signe de r", r: "r\\text{ est positif}" }
+    ]} />
+  </Step>
 </>)}
 
 // ── TEST 4 ────────────────────────────────────────────────────────────────────

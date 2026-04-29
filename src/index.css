@@ -758,3 +758,11 @@ h1, h2, h3, h4 {
     transform: translateX(2px);
   }
 }
+/* ?? Tableau Statistiques ?? */
+.stat-table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+.stat-table { width: 100%; border-collapse: collapse; background: white; text-align: center; font-size: 0.95rem; }
+.stat-table th { background: linear-gradient(135deg, #F51E65, #c9104b); color: white; padding: 12px 15px; font-weight: 600; }
+.stat-table td { padding: 12px 15px; border-bottom: 1px solid #f0f0f0; color: #333; vertical-align: middle; }
+.stat-table tr:last-child td { border-bottom: none; }
+.stat-table tr:nth-child(even) { background-color: #fafafa; }
+.stat-table td:first-child { font-weight: 600; color: #F51E65; text-align: left; }
