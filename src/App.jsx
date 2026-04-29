@@ -32,6 +32,38 @@ const StatTable = ({ data }) => (
   </div>
 )
 
+const GraphDegTable = ({ nodes, dPlus, dMinus, d }) => (
+  <div className="stat-table-wrap" style={{ maxWidth: '600px', margin: '1.5rem auto' }}>
+    <table className="stat-table">
+      <thead>
+        <tr>
+          <th>Sommet</th>
+          {nodes.map(n => <th key={n} style={{ textAlign: 'center' }}>{n}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {d ? (
+          <tr>
+            <td><BM t="d" /></td>
+            {d.map((val, i) => <td key={i}>{val}</td>)}
+          </tr>
+        ) : (
+          <>
+            <tr>
+              <td><BM t="d^+" /></td>
+              {dPlus.map((val, i) => <td key={i}>{val}</td>)}
+            </tr>
+            <tr>
+              <td><BM t="d^-" /></td>
+              {dMinus.map((val, i) => <td key={i}>{val}</td>)}
+            </tr>
+          </>
+        )}
+      </tbody>
+    </table>
+  </div>
+)
+
 const COLORS = ['#1d3a6e','#e0296e','#00b4a6','#7c3aed','#ea7c1e','#16803c','#dc2626']
 function Step({ children, index, title }) {
   const ref = useRef(null)
@@ -782,8 +814,11 @@ function T7E2() { return (<>
     <RB><BM t={T.T7E2_Ori} /></RB>
   </Step>
   <Step index={1} title="Degrés et chaînes eulériennes">
-    <IB label="Degrés sortants"><BM t={T.T7E2_DegP} /></IB>
-    <IB label="Degrés entrants"><BM t={T.T7E2_DegM} /></IB>
+    <GraphDegTable
+      nodes={['A', 'B', 'C', 'D', 'E', 'F', 'G']}
+      dPlus={[3, 1, 2, 1, 3, 2, 3]}
+      dMinus={[3, 1, 2, 2, 2, 2, 3]}
+    />
     <IB label="Circuit eulérien ?"><BM t={T.T7E2_CircEul} /></IB>
     <RB><BM t={T.T7E2_ChnEul} /></RB>
   </Step>
@@ -1057,7 +1092,7 @@ function T9E3() { return (<>
 function T9E4() { return (<>
   <Step index={0} title="Graphe et Chaîne Eulérienne">
     <IB label="Ordre et Arêtes"><BM t={T.T9E4_Ordre} /></IB>
-    <IB label="Tableau des degrés"><BM t={T.T9E4_Deg} /></IB>
+    <GraphDegTable nodes={['A', 'B', 'C', 'D', 'E']} d={[4, 3, 3, 4, 2]} />
     <RB><BM t={T.T9E4_Eul} /></RB>
   </Step>
   <Step index={1} title="Nombre chromatique">
@@ -1158,7 +1193,7 @@ function T10E3() {
 function T10E4() { return (<>
   <Step index={0} title="Graphe et parcours piéton">
     <IB label="Analyse"><BM t={T.T10E4_Ordre} /></IB>
-    <IB label="Degrés"><BM t={T.T10E4_Deg} /></IB>
+    <GraphDegTable nodes={['A', 'B', 'C', 'D', 'E']} d={[4, 3, 3, 4, 2]} />
     <RB><BM t={T.T10E4_Piéton} /></RB>
   </Step>
   <Step index={1} title="Sous-graphe complet et Coloriage">
