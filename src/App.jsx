@@ -1444,8 +1444,8 @@ export default function App() {
   const load = (id) => { setSearched(true); setCorrection(DB[id] || null) }
   const nav = (k) => { setInput(k); setExoId(k); load(k); const u = new URL(window.location); u.searchParams.set('exo', k); window.history.pushState({}, '', u) }
   const submit = (e) => { e.preventDefault(); const id = input.trim().toUpperCase(); nav(id) }
-  // Pour les Tests: TEST1-E1 → TEST1.pdf (un seul PDF par test). Pour les sujets: T1-E1 → T1-E1.pdf
-  const simplePdfName = (id) => id.startsWith('TEST') ? id.split('-')[0] : id
+  // Pour les sujets et les Tests, on veut télécharger le PDF du sujet complet (ex: T1 ou TEST1)
+  const simplePdfName = (id) => id.split('-')[0]
   // Belfallagui: belfallagui_T1.pdf ou belfallagui_TEST1.pdf
   const belPdfName = (id) => `belfallagui_${id.split('-')[0]}`
 
